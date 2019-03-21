@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     },
     hello : {
         color: '#828D9A',
-        fontSize: 17,
+        fontSize: 20,
         fontWeight: '200',
         
     },

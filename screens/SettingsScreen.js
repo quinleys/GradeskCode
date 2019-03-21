@@ -52,10 +52,11 @@ class SettingsScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-            <View style={styles.text}>
-                <Text>name: {this.state.name}</Text>
-                <Text>email: {this.state.email}</Text>
-                <Text>not you? please log out</Text>
+            <Text style={styles.title}>Settings</Text>
+            <View>
+                <Text  style={styles.text}>name: {this.state.name}</Text>
+                <Text  style={styles.text}>email: {this.state.email}</Text>
+                <Text style={styles.little}>not you? please log out</Text>
                 <Button title="Sign Out" onPress= {this.logOut} >Sign Out</Button>
                 </View>
             </View>
@@ -67,13 +68,35 @@ export default SettingsScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20
+        overflow: 'hidden',
+        padding: 20,
+        paddingTop: 50,
+        paddingBottom: 0
     },text: {
-        flex: 1,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
+        
         fontSize: 25,
         fontWeight: '200',
-    },
+    },title : {
+        fontSize: 50,
+        fontWeight: '700',
+        shadowColor: "#000",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 2,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, 
+        paddingBottom:20
+        
+
+    },little: {
+        paddingTop: 20,
+        textDecorationLine: 'underline',
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: '100',
+    }
     
 });
