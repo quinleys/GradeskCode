@@ -11,6 +11,8 @@ basic features
 + firebase auth
 + navigation
 + get username 
++ log out
++ startpage with data and clickable 
 
 technologies
 + react native
