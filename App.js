@@ -22,7 +22,14 @@ import StatsScreen from './screens/StatsScreen'
 
 
 const AuthStackNavigator = createStackNavigator({
-  Welcome: WelcomeScreen,
+  Welcome: {
+    // hide menu op start scherm
+    screen : WelcomeScreen, 
+  navigationOptions: ({ navigation }) => ({
+    header: null,
+    })
+  },
+
   SignIn: SignInScreen,
   SignUp: SignUpScreen
 })
@@ -76,6 +83,9 @@ const AppStackNavigator = createStackNavigator({
   AppTabNavigator: {
     screen: AppTabNavigator,
     navigationOptions: ({ navigation }) => ({
+      // toon hamburger menu niet
+      
+      header: null,
       title: 'Your App',
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
@@ -83,7 +93,8 @@ const AppStackNavigator = createStackNavigator({
             <Icon name="md-menu" size={24} />
           </View>
         </TouchableOpacity>
-      )
+      ),
+      
     })
   }
 })
@@ -100,10 +111,13 @@ AppTabNavigator.navigationOptions = ({ navigation }) => {
   };
 };
 
-const AppDrawerNavigator = createDrawerNavigator({
-  Home: AppStackNavigator
-})
 
+const AppDrawerNavigator = createDrawerNavigator({
+  Home: AppStackNavigator,
+  Statistics : StatsScreen,
+  Agenda : AgendaScreen,
+  Settings : SettingsScreen
+})
 
 export default createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,

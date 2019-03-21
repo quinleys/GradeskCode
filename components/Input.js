@@ -20,7 +20,7 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry}) => {
 const styles = StyleSheet.create({
 
     container: {
-        marginTop: 60,
+        marginTop: 50,
         width : '100%',
         borderColor: '#eee',
         borderBottomWidth: 2,

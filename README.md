@@ -10,6 +10,7 @@ basic features
 
 + firebase auth
 + navigation
++ get username 
 
 technologies
 + react native

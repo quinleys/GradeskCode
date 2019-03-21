@@ -4,12 +4,13 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Image,
+    ScrollView
 } from "react-native";
 import SvgUri from 'react-native-svg-uri';
 import { SignIn } from './SignInScreen'
 import * as firebase from 'firebase'
-
 
     
 
@@ -22,6 +23,7 @@ class HomeScreen extends Component {
 
         var randomStresslevel =  Math.floor(Math.random() * 100) + 1 ;
         var randomScore =  Math.floor(Math.random() * 20) + 1 ;
+        var randomHoursStudied=  Math.floor(Math.random() * 50) + 1 ;
         var user = firebase.auth().currentUser;
 
         var name, email, photoUrl, uid, emailVerified;
@@ -39,12 +41,13 @@ class HomeScreen extends Component {
         deadlineMonth : month,
 
         // Stresslevel  
-
         stresslevel : randomStresslevel,
 
         // Score  
+        score : randomScore,
 
-        score : randomScore
+        // Score  
+        hoursStudied : randomHoursStudied
         }
     }
 
@@ -56,7 +59,9 @@ class HomeScreen extends Component {
                     <Text style={styles.hello}>hello, </Text>
                     <Text style={styles.name}>{this.state.name} </Text>
                 </View> 
+                <ScrollView>
                 <View style={styles.body}>
+
                     <View style={styles.row}>
                         <View style={styles.card}> 
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Agenda')}>
@@ -64,32 +69,48 @@ class HomeScreen extends Component {
                             <SvgUri
                                 width="100"
                                 height="100"
+
                                 source={require('../assets/deadline.svg')}
                             />
-                            <Text style={styles.cardText}>{this.state.deadlineDay}/{this.state.deadlineMonth}</Text>
+                            <Text style={styles.cardSubTitle}>{this.state.deadlineDay}/{this.state.deadlineMonth}</Text>
                             </TouchableOpacity>
                         </View>   
                         <View style={styles.card}> 
+                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
                             <Text style={styles.cardTitle}>Last Score</Text>
-                              <Text style={styles.cardText}>{this.state.score}/20</Text>
+                              <Text style={styles.cardSubTitle}>{this.state.score}/20</Text>
+                              </TouchableOpacity>
                         </View> 
                     </View>
+
                         <View style={styles.row}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
-                            <View style={styles.card}> 
-                            
+                        
+                            <View style={styles.card}>  
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
                                 <Text style={styles.cardTitle}>Stresslevel</Text>
-                                <Text style={styles.cardText}>{this.state.stresslevel}</Text>
-                                <SvgUri
-                                width="100"
-                                height="100"
-                                source={require('../assets/heart.svg')}
-                                /> 
-                                
+                                <Text style={styles.cardSubTitle}>{this.state.stresslevel}</Text>
+                                <Image
+                                    style={{width: 50, height: 50, justifyContent: 'center',
+                                    alignItems: 'center'}}
+
+                                    source={require('../assets/heart-png-44643.png')}
+                                />
+                                </TouchableOpacity>
                             </View> 
-                            </TouchableOpacity>
-                        </View>
+                            
+                            </View>
+
+                            <View style={styles.row}>
+                                <View style={styles.card}> 
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
+                                    <Text style={styles.cardTitle}>Hours Studied</Text>
+                                    <Text style={styles.cardSubTitle}>{this.state.hoursStudied}</Text>
+                                    </TouchableOpacity>
+                                </View> 
+                            </View>
+                        
                 </View>
+                </ScrollView>
             </View> 
         );
     }
@@ -99,16 +120,21 @@ export default HomeScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20
+        overflow: 'hidden',
+        padding: 20,
+        paddingTop: 50,
+        paddingBottom: 0
+
     },
     body : {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+
     },
     card: {
         flex: 1,
-        margin: 10,
+        margin : 10,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFFFFF',
@@ -122,18 +148,25 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
         elevation: 5,  
         height: 200,
+        borderRadius: 4,
+        
 
     },
     cardTitle: {
         fontSize: 35,
         fontWeight: '500',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    cardSubTitle: {
+        fontSize: 25,
+        fontWeight: '300',
+        textAlign: 'center'
     },
     cardText: {
         fontSize: 20,
         fontWeight: '300',
-    },
-    title: {
-        
+        textAlign: 'center'
     },
     hello : {
         color: '#828D9A',
@@ -144,13 +177,23 @@ const styles = StyleSheet.create({
     name : {
         fontSize: 50,
         fontWeight: '700',
+        shadowColor: "#000",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 2,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, 
         
 
     }, row : {
         flex: 1,
         flexDirection: 'row',
-        margin: 0,
-        
-    },
+    }, img :{
+
+        alignContent: 'center'
+    }
     
 });
