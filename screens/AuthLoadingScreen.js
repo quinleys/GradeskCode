@@ -6,18 +6,30 @@ import {
     ActivityIndicator,
     AsyncStorage
 } from "react-native";
+import * as firebase from 'firebase'
 
 class AuthLoadingScreen extends Component {
+
+    componentWillMount(){
+        const firebaseConfig = {
+            apiKey:'AIzaSyAho2KbldJTJzgk79ETS8gu6NeF7c5a2R4',
+            authDomain:'gradesk.firebaseapp.com'
+        }
+
+        firebase.initializeApp(firebaseConfig);
+    }
 
     constructor() {
         super()
         this.loadApp()
     }
 
-    loadApp = async () => {
-        const userToken = await AsyncStorage.getItem('userToken')
+    
 
-        this.props.navigation.navigate(userToken ? 'App' : 'Auth')
+    loadApp = async () => {
+
+        const userToken = await AsyncStorage.getItem('userToken')
+        this.props.navigation.navigate('Auth')
     }
 
     render() {

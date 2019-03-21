@@ -17,7 +17,9 @@ import HomeScreen from './screens/HomeScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import AgendaScreen from './screens/AgendaScreen'
 import StatsScreen from './screens/StatsScreen'
- 
+
+
+
 
 const AuthStackNavigator = createStackNavigator({
   Welcome: WelcomeScreen,
@@ -30,7 +32,7 @@ const AppTabNavigator = createBottomTabNavigator({
   HomeScreen: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarLabel: 'HOME',
+      tabBarLabel: 'Home',
       tabBarIcon: () => (
         <Icon name="ios-home" size={24} />
       )

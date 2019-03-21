@@ -10,15 +10,9 @@ import * as firebase from 'firebase'
 
 class WelcomeScreen extends Component {
 
-    componentWillMount(){
-        const firebaseConfig = {
-            apiKey:'AIzaSyAho2KbldJTJzgk79ETS8gu6NeF7c5a2R4',
-            authDomain:'gradesk.firebaseapp.com'
-        }
+    
 
-        firebase.initializeApp(firebaseConfig);
-    }
-
+    
 
     render() {
         return (

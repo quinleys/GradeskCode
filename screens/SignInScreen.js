@@ -15,21 +15,24 @@ class SignInScreen extends Component {
     constructor(props) {
         super(props);
         this.state = ({
+            userCredentials: '',
             email: '',
             password: '',
+            
         })
     }
 
 
     lognInUser = (email, password)=>{
         try{
-            firebase.auth().signInWithEmailAndPassword(email,password).
-            then(function(user){
-                console.log(user)
-            })
-            this.props.navigation.navigate('App')
-        }catch(error)
+            firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+                   .then((s)=> {
+            this.props.navigation.navigate('App');
+          })
+        }
+    catch(error)
         {
+            alert('Account does not exist')
             console.log(error,toString())
         }
     }
@@ -38,6 +41,7 @@ class SignInScreen extends Component {
         return (
             <View style={styles.container}>
             <Text style={styles.text}> Gradesk </Text>
+            
             <Input
             autoCapitalize='none'
             autoCorrect={false}
@@ -49,7 +53,7 @@ class SignInScreen extends Component {
             <Input 
             autoCapitalize='none'
             autoCorrect={false}
-            placeholder= 'Enter your email...'
+            placeholder= 'Enter your password...'
             label='Password'
             secureTextEntry
             onChangeText={password => this.setState({ password })}

@@ -15,20 +15,32 @@ class SignUpScreen extends Component {
     constructor(props) {
         super(props);
         this.state = ({
+            userCredentials:'',
             email: '',
             password: '',
         })
     }
 
-    signUpUser = (email, password)=>{
+    signUpUser = (email, password, userCredentials)=>{
 
         try{
-            if(this.state.password.length < 6){
-                alert('Please enter atleast 6 characters')
+            if(this.state.password.length < 4){
+                alert('Please enter atleast 4 characters')
                 return;
             }
-            firebase.auth().createUserWithEmailAndPassword(email,password)
-            this.props.navigation.navigate('App')
+            firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
+                .then((userCredentials)=>{
+                    if(userCredentials.user){
+                    userCredentials.user.updateProfile({
+                        displayName: this.state.userCredentials
+                    }).then((s)=> {
+                        this.props.navigation.navigate('App');
+                    })
+                    }
+                })
+                .catch(function(error) {
+                alert(error.message);
+                });
         }catch(error){
             console.log(error.toString())
         }
@@ -38,6 +50,14 @@ class SignUpScreen extends Component {
             <View style={styles.container}>
     
             <Text style={styles.text}> Gradesk </Text>
+            <Input 
+            autoCapitalize='none'
+            autoCorrect={false}
+            placeholder= 'Enter your name...'
+            label='name'
+            onChangeText={userCredentials => this.setState({ userCredentials })}
+            value = {this.state.userCredentials}
+            />
             <Input
             autoCapitalize='none'
             autoCorrect={false}
