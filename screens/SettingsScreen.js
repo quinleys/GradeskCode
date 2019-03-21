@@ -3,7 +3,8 @@ import {
     View,
     Text,
     StyleSheet,
-    AsyncStorage
+    AsyncStorage,
+    ClearSomeLocalStorage
 } from "react-native";
 import { Name } from '../components/Name'
 import * as firebase from 'firebase'
@@ -33,21 +34,16 @@ class SettingsScreen extends Component {
         }
     }
 
-    // cant log out dont know why? 
-    
-    logOut () {
+        signOutUser = async () => {
+            try {
+                await firebase.auth().signOut();
+                console.log('logged out');
+                this.props.navigation.navigate('Welcome')
+            } catch (e) {
+                console.log(e);
+            }
+        }
         
-        firebase.auth().signOut().
-        then(function() {
-            this.props.navigation.navigate('AuthLoading')
-            console.log('log out')
-          }).catch(function(error) {
-                console.log(error)
-                
-          });
-        
-    }
-    
 
     render() {
         return (
@@ -57,7 +53,7 @@ class SettingsScreen extends Component {
                 <Text  style={styles.text}>name: {this.state.name}</Text>
                 <Text  style={styles.text}>email: {this.state.email}</Text>
                 <Text style={styles.little}>not you? please log out</Text>
-                <Button title="Sign Out" onPress= {this.logOut} >Sign Out</Button>
+                <Button onPress= {this.signOutUser} >Sign Out</Button>
                 </View>
             </View>
         );

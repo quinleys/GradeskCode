@@ -7,6 +7,7 @@ import {
 } from "react-native";
 
 import Icon from 'react-native-vector-icons/Ionicons'
+import TabIcon from './components/TabIcon'
 
 import { createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation'
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
@@ -39,44 +40,76 @@ const AppTabNavigator = createBottomTabNavigator({
   HomeScreen: {
     screen: HomeScreen,
     navigationOptions: {
-      tabBarLabel: 'Home',
-      tabBarIcon: () => (
-        <Icon name="ios-home" size={24} />
+      //tabBarLabel: 'Home',
+      tabBarIcon: ({ focused, tintColor }) => (
+        <TabIcon
+            iconDefault='ios-home'
+            iconFocused='ios-home'
+            focused={focused}
+            tintColor={tintColor}
+            />
       )
-    }
+    }    
+
   },
 
   Agenda: {
     screen: AgendaScreen,
     navigationOptions: {
-      tabBarLabel: 'Agenda',
-      tabBarIcon: () => (
-        <Icon name="ios-calendar" size={24} />
-      )
+      // tabBarLabel: 'Statistics',
+
+      tabBarIcon: ({ focused, tintColor }) => (
+        <TabIcon
+            iconDefault='ios-calendar'
+            iconFocused='ios-calendar'
+            focused={focused}
+            tintColor={tintColor}
+        />
+    )
+
     }
 
   },
   Statistics: {
     screen: StatsScreen,
     navigationOptions: {
-      tabBarLabel: 'Statistics',
-      tabBarIcon: () => (
-        <Icon name="ios-stats" size={24} />
+      // tabBarLabel: 'Statistics',
+ 
+      tabBarIcon: ({ focused, tintColor }) => (
+        <TabIcon
+            iconDefault='ios-stats'
+            iconFocused='ios-stats'
+            focused={focused}
+            tintColor={tintColor}
+        />
       )
-    }
-
+      }
   },
   Settings: {
     screen: SettingsScreen,
     navigationOptions: {
-      tabBarLabel: 'User',
-      tabBarIcon: () => (
-        <Icon name="ios-contact" size={24} />
+      // tabBarLabel: 'User',
+
+      tabBarIcon: ({ focused, tintColor }) => (
+        <TabIcon
+            iconDefault='ios-contact'
+            iconFocused='ios-contact'
+            focused={focused}
+            tintColor={tintColor}
+        />
       )
     }
   },
+},
+  {
+    tabBarOptions: {
+        activeTintColor: '#00aeef',
+        inactiveTintColor: '#000000',
+        showLabel: false 
+        
+    },
 
-})
+});
 
 
 const AppStackNavigator = createStackNavigator({
@@ -103,11 +136,10 @@ const AppStackNavigator = createStackNavigator({
 AppTabNavigator.navigationOptions = ({ navigation }) => {
   let { routeName } = navigation.state.routes[navigation.state.index];
 
-  // You can do whatever you like here to pick the title based on the route name
-  let headerTitle = routeName;
+  //let headerTitle = routeName;
 
   return {
-    headerTitle,
+   // headerTitle,
   };
 };
 
