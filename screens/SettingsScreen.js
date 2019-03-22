@@ -4,7 +4,8 @@ import {
     Text,
     StyleSheet,
     AsyncStorage,
-    ClearSomeLocalStorage
+    ClearSomeLocalStorage,
+    Alert
 } from "react-native";
 import { Name } from '../components/Name'
 import * as firebase from 'firebase'
@@ -12,6 +13,7 @@ import * as firebase from 'firebase'
 import { Button } from '../components/Button'
 
 import { withNavigation } from 'react-navigation';
+import { Input } from '../components/Input'
 
 class SettingsScreen extends Component {
 
@@ -25,12 +27,13 @@ class SettingsScreen extends Component {
         var name, email, photoUrl, uid, emailVerified;
         
         this.state = {
-
+            newPassword: '',
         name : user.displayName,
         email : user.email,
         photoUrl : user.photoURL,
         emailVerified : user.emailVerified,
         uid : user.uid  
+
         }
     }
 
@@ -44,7 +47,17 @@ class SettingsScreen extends Component {
             }
         }
         
+        
 
+        goToEdit = () => {
+            try {
+            this.props.navigation.navigate('Edit')
+            console.log('edit')
+            } catch(e){
+                console.log(e);
+            }
+        }
+        
     render() {
         return (
             <View style={styles.container}>
@@ -52,9 +65,11 @@ class SettingsScreen extends Component {
             <View>
                 <Text  style={styles.text}>name: {this.state.name}</Text>
                 <Text  style={styles.text}>email: {this.state.email}</Text>
+                
+                <Button title='Edit' onPress={this.goToEdit}>edit</Button>
+                </View>
                 <Text style={styles.little}>not you? please log out</Text>
                 <Button onPress= {this.signOutUser} >Sign Out</Button>
-                </View>
             </View>
         );
     }

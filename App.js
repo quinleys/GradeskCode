@@ -9,6 +9,8 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons'
 import TabIcon from './components/TabIcon'
 
+import ActionSheet from 'react-native-actionsheet'
+
 import { createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation'
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
 import WelcomeScreen from './screens/WelcomeScreen'
@@ -18,9 +20,7 @@ import HomeScreen from './screens/HomeScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import AgendaScreen from './screens/AgendaScreen'
 import StatsScreen from './screens/StatsScreen'
-
-
-
+import EditScreen from './screens/EditScreen'
 
 const AuthStackNavigator = createStackNavigator({
   Welcome: {
@@ -32,7 +32,7 @@ const AuthStackNavigator = createStackNavigator({
   },
 
   SignIn: SignInScreen,
-  SignUp: SignUpScreen
+  SignUp: SignUpScreen,
 })
 
 
@@ -70,6 +70,7 @@ const AppTabNavigator = createBottomTabNavigator({
     }
 
   },
+ 
   Statistics: {
     screen: StatsScreen,
     navigationOptions: {
@@ -148,8 +149,11 @@ const AppDrawerNavigator = createDrawerNavigator({
   Home: AppStackNavigator,
   Statistics : StatsScreen,
   Agenda : AgendaScreen,
-  Settings : SettingsScreen
+  Settings : SettingsScreen,
+  Edit: EditScreen
 })
+
+
 
 export default createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,

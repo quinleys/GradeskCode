@@ -3,11 +3,14 @@ import {
     View,
     Text,
     StyleSheet,
+    Alert
 } from "react-native";
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
 
 import * as firebase from 'firebase'
+
+
 
 
 class SignInScreen extends Component {
@@ -29,12 +32,12 @@ class SignInScreen extends Component {
                    .then((s)=> {
             this.props.navigation.navigate('App');
           })
+          
+        } catch { 
+            Alert.alert('Account does not exist')
+            console.log('catch error')
         }
-    catch(error)
-        {
-            alert('Account does not exist')
-            console.log(error,toString())
-        }
+   
     }
 
     render() {
