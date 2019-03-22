@@ -10,7 +10,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import TabIcon from './components/TabIcon'
 
 import ActionSheet from 'react-native-actionsheet'
-
+import { SafeAreaView } from 'react-navigation';
 import { createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation'
 import AuthLoadingScreen from './screens/AuthLoadingScreen'
 import WelcomeScreen from './screens/WelcomeScreen'
@@ -100,6 +100,18 @@ const AppTabNavigator = createBottomTabNavigator({
         />
       )
     }
+  }, Edit: {
+    screen: EditScreen,
+    navigationOptions: {
+      tabBarIcon: ({ focused, tintColor }) => (
+        <TabIcon
+            iconDefault='ios-build'
+            iconFocused='ios-build'
+            focused={focused}
+            tintColor={tintColor}
+        />
+      )
+    }
   },
 },
   {
@@ -150,7 +162,7 @@ const AppDrawerNavigator = createDrawerNavigator({
   Statistics : StatsScreen,
   Agenda : AgendaScreen,
   Settings : SettingsScreen,
-  Edit: EditScreen
+  Edit: EditScreen,
 })
 
 

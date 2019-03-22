@@ -12,7 +12,7 @@ import SvgUri from 'react-native-svg-uri';
 import { SignIn } from './SignInScreen'
 import * as firebase from 'firebase'
 
-    
+import { SafeAreaView } from 'react-navigation';   
 
 class HomeScreen extends Component {
 
@@ -54,6 +54,7 @@ class HomeScreen extends Component {
 
     render() {
         return (
+
             <View style={styles.container}>
                 <View style={styles.title}>  
                     <Text style={styles.hello}>hello, </Text>
@@ -112,6 +113,7 @@ class HomeScreen extends Component {
                 </View>
                 </ScrollView>
             </View> 
+
         );
     }
 }
