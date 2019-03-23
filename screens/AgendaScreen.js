@@ -36,9 +36,10 @@ export class AgendaScreen extends Component {
             listViewColor : color,
             newContact: '',
             newDate: new Date(). getDate(),
-            newLabel: '',
+            newLabel: 'Label',
             selectedValue: null,
-            colorLabel:''
+            colorLabel:'',
+            color: '#00aeef'
             
             
 
@@ -122,23 +123,23 @@ export class AgendaScreen extends Component {
 
             </View>
 
- 
-
-
-            <View>
-        <Text onPress={this.showActionSheet}>Open ActionSheet</Text>
-        <ActionSheet
-          ref={o => this.ActionSheet = o}
-          title={'Which one do you like ?'}
-          options={['Work', 'School', 'Sport', 'Personal', 'None', 'cancel']}
-          selectedValue={this.state.newLabel}
-          cancelButtonIndex={5}
-          destructiveButtonIndex={4}
-          onPress={(newLabel) => ( this.setState({newLabel : this.labelData[newLabel]}), this.setState({newColor : this.labelColor[newLabel]}),console.log(this.labelData[newLabel]),console.log(this.labelColor[newLabel]) )}
-        />
-    <Text>label: {this.state.newLabel}</Text>
-
+            <View style={styles.labelContainer}>
+                <Button style={{backgroundColor : this.state.color}} onPress={this.showActionSheet}>
+                    <Text >{this.state.newLabel}</Text>
+                </Button>
+            <ActionSheet
+                ref={o => this.ActionSheet = o}
+                title={'Which one do you like ?'}
+                options={['Work', 'School', 'Sport', 'Personal', 'None', 'cancel']}
+                selectedValue={this.state.newLabel}
+                cancelButtonIndex={5}
+                destructiveButtonIndex={4}
+                onPress={(newLabel) => ( this.setState({newLabel : this.labelData[newLabel]}), this.setState({newColor : this.labelColor[newLabel]}),console.log(this.labelData[newLabel]), this.setState({color : this.labelColor[newLabel]}) )}
+            />
+            
             </View>
+
+            
             <ScrollView>
             <List
             enableEmptySections
@@ -247,5 +248,13 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         overflow : 'hidden',
         height: 50
+    }, label: {
+        flexDirection : 'row',
+        fontWeight : '700',
+        fontSize: 30,
+    }, labelButton : {
+        backgroundColor : '#172B4D'
+    }, labelContainer : {
+        flexDirection : 'row',
     }
 });
