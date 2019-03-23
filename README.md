@@ -21,6 +21,8 @@ basic features
 + agenda
     + make a deadline with datepicker & title
     + swipe left to delete 
+    + add label 
+    + color change depeding on label
 + pop-up
     + made pop-up with tips using a API (https://api.kanye.rest)
 
