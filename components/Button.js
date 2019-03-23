@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { lightBlue } from '../utils/styles/Colors'
 
-const Button = ({onPress, children}) => {
+const Button = ({onPress, children,}) => {
     return (
         <TouchableOpacity onPress={onPress} style={styles.button}>
             <Text style={styles.text}>{ children }</Text>

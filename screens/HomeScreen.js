@@ -12,7 +12,6 @@ import SvgUri from 'react-native-svg-uri';
 import { SignIn } from './SignInScreen'
 import * as firebase from 'firebase'
 
-import { SafeAreaView } from 'react-navigation';   
 import Popup from '../components/Popup'
 
 class HomeScreen extends Component {

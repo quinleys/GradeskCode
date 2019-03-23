@@ -119,9 +119,10 @@ class EditScreen extends Component {
         
     render() {
         return (
-            <ScrollView>
+            
             <View style={styles.container}>
             <Text style={styles.title}>Edit</Text>
+            <ScrollView>
             <View>
                 <Text  style={styles.text}>name: {this.state.name}</Text>
                 
@@ -150,8 +151,9 @@ class EditScreen extends Component {
                 
                               
                         </View>
+                        </ScrollView>
             </View>
-            </ScrollView>
+            
         );
     }
 }
