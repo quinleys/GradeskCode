@@ -18,6 +18,11 @@ basic features
     + change email 
     + change password
     + delete account with pop-up (needs little fix)
++ agenda
+    + make a deadline with datepicker & title
+    + swipe left to delete 
++ pop-up
+    + made pop-up with tips using a API (https://api.kanye.rest)
 
 technologies
 + react native
@@ -28,4 +33,4 @@ technologies
 email
 +test@test.test
 password
-+testjegit 
++testje

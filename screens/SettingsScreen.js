@@ -7,7 +7,7 @@ import {
     ClearSomeLocalStorage,
     Alert
 } from "react-native";
-import { Name } from '../components/Name'
+
 import * as firebase from 'firebase'
 
 import { Button } from '../components/Button'
@@ -68,7 +68,7 @@ class SettingsScreen extends Component {
                 
                 <Button title='Edit' onPress={this.goToEdit}>edit</Button>
                 </View>
-                <Text style={styles.little}>not you? please log out</Text>
+                <Text style={styles.little}>Are you not {this.state.name}? please log out</Text>
                 <Button onPress= {this.signOutUser} >Sign Out</Button>
             </View>
         );
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         textAlign: 'center',
         fontSize: 20,
-        fontWeight: '100',
+        fontWeight: '200',
     }
     
 });

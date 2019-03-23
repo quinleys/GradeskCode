@@ -8,14 +8,14 @@ import {
     Alert,
     ScrollView
 } from "react-native";
-import { Name } from '../components/Name'
+
 import * as firebase from 'firebase'
 
 import { Button } from '../components/Button'
 
 import { withNavigation } from 'react-navigation';
 import { Input } from '../components/Input'
-import Dialog, { DialogFooter, DialogButton, DialogContent,DialogTitle, ScaleAnimation } from 'react-native-popup-dialog';
+
 class EditScreen extends Component {
 
     
@@ -81,18 +81,42 @@ class EditScreen extends Component {
                 console.log(e);
             }
         }
+        
         deleteAccount = () => {
+
+            goToWelcome = () => {
+                this.props.navigation.navigate('Welcome')
+            }
+            
             var user = firebase.auth().currentUser;
             user.delete().then(function() {
                 try{
-                this.props.navigate.navigation('Welcome')
-                Alert.alert('User succesfully Deleted')}catch(e){
-                    Alert.alert('User not deleted')
+                Alert.alert('User succesfully Deleted')
+                goToWelcome()}
+                catch(e){
+                    //Alert.alert('User not deleted')
+                    console.log(e)
                 }
-              }).catch(function(error) {
-                Alert.alert('User not deleted')
-              });
+              })
+    
         }
+        alertAlert = () => {
+            Alert.alert(
+                'Delete account',
+                'Are you sure you want to delete your account? This will be permanent!',
+                [
+                  
+                  {
+                    text: 'Cancel',
+                    onPress: () => console.log('Cancel Pressed'),
+                    style: 'cancel',
+                  },
+                  {text: 'Yes', onPress: () => this.deleteAccount()},
+                ],
+                {cancelable: false},
+              );
+        }
+        
     render() {
         return (
             <ScrollView>
@@ -119,44 +143,12 @@ class EditScreen extends Component {
             />
                 <Button title='New Password' onPress={this.onChangePasswordPress}>change password</Button>
                 <Button title='New Email' onPress={this.onChangeEmailPress}>change email</Button>
-                <Button title='Show Dialog' onPress={() => {
-                                            this.setState({ visible: true });
-                                            }}>Delete Account</Button>
-
-
-                
+                <Button title='Show Dialog' onPress={this.alertAlert}> Delete Account </Button>
                         <Button title='Done' onPress={this.goToSettings}>Done</Button>
                 </View>
                 <View style={styles.dialog}>
-                <Dialog
-                        visible={this.state.visible}
-                        width = {0.8}
-                        dialogTitle={<DialogTitle title="Deleting Account!" />}
-                        dialogAnimation={new ScaleAnimation({
-                            toValue: 0, // optional
-                            useNativeDriver: true, // optional
-                          })}
-                        
-                        onTouchOutside={() => {
-                        this.setState({ visible: false });
-                        }}
-                        footer={
-                            <DialogFooter>
-                              <DialogButton
-                                text="CANCEL"
-                                onPress={() => {this.setState({ visible: false });}}
-                              />
-                              <DialogButton
-                                text="YES"
-                                onPress={() => {this.deleteAccount()}}
-                              />
-                            </DialogFooter>
-                          }
-                        > 
-                        <DialogContent>
-                            <Text>Are you sure you want to delete your account? This will be permanent!</Text>
-                        </DialogContent>
-                        </Dialog>
+                
+                              
                         </View>
             </View>
             </ScrollView>

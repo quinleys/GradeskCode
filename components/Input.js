@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
+import {white , grey} from '../utils/styles/Colors'
 
 const Input = ({ label, value, onChangeText, placeholder, secureTextEntry}) => {
     return (
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     container: {
         marginTop: 50,
         width : '100%',
-        borderColor: '#eee',
+        borderColor: white,
         borderBottomWidth: 2,
 
 
@@ -30,7 +31,7 @@ const styles = StyleSheet.create({
     label: {
         padding: 5,
         paddingBottom: 0,
-        color : '#333',
+        color : grey,
         fontSize: 17,
         fontWeight: '700',
         width: '100%',
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
         paddingRight: 5,
         paddingLeft: 5,
         paddingBottom: 2,
-        color : '#333',
+        color : grey,
         fontSize: 18,
         width: '100%',
 

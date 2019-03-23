@@ -13,6 +13,7 @@ import { SignIn } from './SignInScreen'
 import * as firebase from 'firebase'
 
 import { SafeAreaView } from 'react-navigation';   
+import Popup from '../components/Popup'
 
 class HomeScreen extends Component {
 
@@ -21,7 +22,7 @@ class HomeScreen extends Component {
         var date = new Date().getDate(); 
         var month = new Date().getMonth() + 1;
 
-        var randomStresslevel =  Math.floor(Math.random() * 100) + 1 ;
+        var randomStresslevel =  Math.floor(Math.random() * 100) + 1;
         var randomScore =  Math.floor(Math.random() * 20) + 1 ;
         var randomHoursStudied=  Math.floor(Math.random() * 50) + 1 ;
         var user = firebase.auth().currentUser;
@@ -50,7 +51,6 @@ class HomeScreen extends Component {
         hoursStudied : randomHoursStudied
         }
     }
-
 
     render() {
         return (
@@ -109,6 +109,7 @@ class HomeScreen extends Component {
                                     </TouchableOpacity>
                                 </View> 
                             </View>
+                            <Popup></Popup>
                         
                 </View>
                 </ScrollView>

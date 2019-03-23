@@ -25,8 +25,7 @@ class WelcomeScreen extends Component {
         );
     }
 }
-export default WelcomeScreen
-    ;
+export default WelcomeScreen;
 
 const styles = StyleSheet.create({
     container: {
