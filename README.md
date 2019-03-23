@@ -29,7 +29,7 @@ technologies
 + firebase 
 + expo cli  
 
-###test user
+### test user
 email
 +test@test.test
 password
