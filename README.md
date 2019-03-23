@@ -31,6 +31,6 @@ technologies
 
 ### test user
 email
-+test@test.test
++ test@test.test
 password
-+testje
++ testje
