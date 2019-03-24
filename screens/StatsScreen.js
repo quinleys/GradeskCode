@@ -74,7 +74,7 @@ class StatsScreen extends Component {
                                             ]
                                         }]
                                         }}
-                                        width={Dimensions.get('window').width} // from react-native
+                                        width={Dimensions.get('window').width - 45} // from react-native
                                         height={220}
                                         yAxisLabel={'$'}
                                         chartConfig={{
@@ -189,6 +189,6 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     }, pageView: {
         marginTop: 25,
-        marginHorizontal: 35,
+        paddingHorizontal: 35,
     },
 });
