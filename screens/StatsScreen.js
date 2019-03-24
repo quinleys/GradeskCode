@@ -44,11 +44,13 @@ class StatsScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
+
                 <Text style={styles.title}>Statistics</Text>
-                <ScrollView style={{flex : 1,overflow : 'visible', }}>
+
+                <ScrollView >
                     <View style={styles.body}>
                     <Text style={styles.bigTitle}>Average Stresslevel</Text>
-                        <ScrollView horizontal={true} style={{flex : 1,overflow : 'visible', }}>
+                        <ScrollView horizontal={true} >
                             <View style={styles.pageView}>
                                 <PercentageCircle 
                                     radius={100} 
@@ -255,7 +257,6 @@ const chartConfig = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        overflow : 'visible',
         backgroundColor: mainBackground,
         padding: 20,
         paddingTop: 50,
@@ -265,7 +266,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        overflow : 'visible'
+
 
     },title : {
         fontSize: 50,
