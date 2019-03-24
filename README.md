@@ -14,6 +14,9 @@ basic features
 + homepage
     + Agenda tab gets data from database
         + Shows color , date , title
+    + Stresslevel and last score
+        + random number generated
+        + color changes depeding on value    
 + log out
 + startpage with data and clickable 
 + Setting Page 
