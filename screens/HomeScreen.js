@@ -146,9 +146,10 @@ class HomeScreen extends Component {
                                 <Text style={styles.cardSubTitle}>{this.state.stresslevel}</Text>
                                 <View style={{justifyContent: 'center',
                                     alignItems: 'center',
-                                    width : 'auto'}}>
+                                    width : 'auto',
+                                    }}>
                                 <Image
-                                    style={{width: 50, height: 50, 
+                                    style={{width: 50, height: 50, resizeMode: 'contain'
                                     }}
 
                                     source={require('../assets/heart-png-44643.png')}
