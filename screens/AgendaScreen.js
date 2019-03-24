@@ -156,26 +156,21 @@ export class AgendaScreen extends Component {
             </View>
 
             <ScrollView>
-            <List
+                <View style={{backgroundColor : 'transparant '}}>
+            <List style = {styles.list}
             enableEmptySections
             dataSource={this.ds.cloneWithRows(this.state.listViewData)}
+            renderRow ={
+                backgroundColor = mainBackground
+            
+            }
             renderRow={data=>
-            <View style={{
+            <View
+            style={{
                 backgroundColor : data.val().color ,
                 marginVertical: 5,
-                shadowColor: "#000",
-                shadowColor: "#000",
-                shadowOffset: {
-                    width: 0,
-                    height: 2,
-                },
-                shadowOpacity: 0.25,
-                shadowRadius: 3.84,
-                elevation: 5,  
-                height: 'auto',
-                borderRadius: 4,
-                padding: 10,
-                }} >
+                borderColor : 'black'
+             }} >
                 <Text style={styles.text}>{data.val().name}</Text>
                 <Text style={styles.textSmall}>{data.val().label}</Text>
                 <Text style={styles.text}>{data.val().date}</Text>
@@ -190,6 +185,8 @@ export class AgendaScreen extends Component {
                 }
                 rightOpenValue={-90}
             />
+            </View>
+
             </ScrollView>
             
         </View>
@@ -285,5 +282,9 @@ const styles = StyleSheet.create({
         fontWeight : '100',
         fontSize: 20,
         textAlign: 'left',
+    },
+    list  : {
+        backfaceVisibility : 'hidden',
+        backgroundColor : mainBackground
     }
 });

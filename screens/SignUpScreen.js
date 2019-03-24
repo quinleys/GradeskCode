@@ -8,6 +8,7 @@ import {
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
 import * as firebase from 'firebase'
+import { mainBackground , white } from "../utils/styles/Colors";
 
 
 class SignUpScreen extends Component {
@@ -88,9 +89,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         padding : 20,
+        backgroundColor : mainBackground
     },
     text: {
-        color: 'black',
+        color: white ,
         fontWeight : '700',
         fontSize: 70,
         textAlign: 'center',
