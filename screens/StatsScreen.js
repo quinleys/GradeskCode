@@ -45,16 +45,16 @@ class StatsScreen extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Statistics</Text>
-                <ScrollView>
+                <ScrollView style={{flex : 1,overflow : 'visible', }}>
                     <View style={styles.body}>
                     <Text style={styles.bigTitle}>Average Stresslevel</Text>
-                        <ScrollView horizontal={true}>
+                        <ScrollView horizontal={true} style={{flex : 1,overflow : 'visible', }}>
                             <View style={styles.pageView}>
                                 <PercentageCircle 
                                     radius={100} 
                                     percent={this.state.stresslevel} 
                                     color={"#7061e3"} 
-                                    innerColor={"#2c2c37"} 
+                                    innerColor={mainBackground} 
                                     borderWidth={18}
                                     textStyle={{fontSize: 24}}
                                     style={styles.pageView}>
@@ -66,7 +66,7 @@ class StatsScreen extends Component {
                                     radius={100} 
                                     percent={this.state.score} 
                                     color={"#7061e3"} 
-                                    innerColor={"#2c2c37"} 
+                                    innerColor={mainBackground} 
                                     borderWidth={18}
                                     textStyle={{fontSize: 24}}
                                     style={styles.pageView}
@@ -79,7 +79,7 @@ class StatsScreen extends Component {
                                     radius={100} 
                                     percent={this.state.hoursStudied} 
                                     color={"#7061e3"} 
-                                    innerColor={"#2c2c37"} 
+                                    innerColor={mainBackground} 
                                     borderWidth={18}
                                     textStyle={{fontSize: 24}}
                                     style={styles.pageView}
@@ -90,9 +90,9 @@ class StatsScreen extends Component {
                                 </ScrollView>
                                 </View>
 
-                                <View>
+                                <View style={styles.body}>
                                 <Text style={styles.bigTitle}>Average Study Time</Text>
-                                <ScrollView horizontal= 'true'>
+                                <ScrollView horizontal= 'true' style={{overflow : 'visible',}}>
                                 <View style={styles.pageView}>
                                     <LineChart
                                         data={{
@@ -104,7 +104,6 @@ class StatsScreen extends Component {
                                             Math.random() * 12,
                                             Math.random() * 12,
                                             Math.random() * 12,
-                                            Math.random() * 12
                                             ]
                                         }]
                                         }}
@@ -139,8 +138,80 @@ class StatsScreen extends Component {
                                             Math.random() * 12,
                                             Math.random() * 12,
                                             Math.random() * 12,
+                                            ]
+                                        }]
+                                        }}
+                                        width={Dimensions.get('window').width - 45} // from react-native
+                                        height={220}
+                                        yAxisLabel={'h:'}
+                                        chartConfig={{
+                                        backgroundColor: '#2c2c37',
+                                        backgroundGradientFrom: '#bc64ba',
+                                        backgroundGradientTo: '#7061e3',
+                                        decimalPlaces: 2, // optional, defaults to 2dp
+                                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                        style: {
+                                            borderRadius: 16
+                                        }
+                                        }}
+                                        bezier
+                                        style={{
+                                        marginVertical: 8,
+                                        borderRadius: 16
+                                        }}
+                                    />
+                                    <Text style={styles.textStyle}>This month</Text>
+                                </View >
+                                </ScrollView>
+                                </View>
+                                <View style={styles.body}>
+                                <Text style={styles.bigTitle}>Average Sleep Time</Text>
+                                <ScrollView horizontal= 'true'>
+                                <View style={styles.pageView}>
+                                    <BarChart
+                                        data={{
+                                        labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                                        datasets: [{
+                                            data: [
                                             Math.random() * 12,
-                                            Math.random() * 12
+                                            Math.random() * 12,
+                                            Math.random() * 12,
+                                            Math.random() * 12,
+                                            Math.random() * 12,
+                                            ]
+                                        }]
+                                        }}
+                                        width={Dimensions.get('window').width - 45} // from react-native
+                                        height={220}
+                                        yAxisLabel={'h:'}
+                                        chartConfig={{
+                                        backgroundColor: '#2c2c37',
+                                        backgroundGradientFrom: '#bc64ba',
+                                        backgroundGradientTo: '#7061e3',
+                                        decimalPlaces: 2, // optional, defaults to 2dp
+                                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                        style: {
+                                            borderRadius: 16
+                                        }
+                                        }}
+                                        bezier
+                                        style={{
+                                        marginVertical: 8,
+                                        borderRadius: 16
+                                        }}
+                                    />
+                                    <Text style={styles.textStyle}>This week</Text>
+                                </View>
+                                <View style={styles.pageView}>
+                                    <BarChart
+                                        data={{
+                                        labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', ],
+                                        datasets: [{
+                                            data: [
+                                            Math.random() * 12,
+                                            Math.random() * 12,
+                                            Math.random() * 12,
+                                            Math.random() * 12,
                                             ]
                                         }]
                                         }}
@@ -184,11 +255,12 @@ const chartConfig = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        overflow : 'visible',
+        backgroundColor: mainBackground,
         padding: 20,
         paddingTop: 50,
         paddingBottom: 0,
-        backgroundColor: mainBackground,
-        overflow : 'visible'
+        
     },body : {
         flex: 1,
         alignItems: 'center',
@@ -207,7 +279,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5, 
-        paddingBottom:20
+        overflow : 'visible',
     },containerCircle: {
         flex: 1,
         justifyContent: 'center',
@@ -216,6 +288,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: 150,
+        overflow : 'visible',
     }, circle: {
         borderRadius: 50,
         width: 30,
@@ -223,9 +296,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: mainBackground,
+        overflow : 'visible',
     }, textCircle: {
         color: white ,
         fontWeight: 'bold',
+        overflow : 'visible',
     }, textStyle: {
         color: white ,
         fontWeight: 'bold',
@@ -233,16 +308,19 @@ const styles = StyleSheet.create({
         marginTop: 8,
         fontSize: 18,
         marginBottom: 16,
+        overflow : 'visible',
     }, pageView: {
         textAlign: 'center',
         justifyContent : 'center',
-        marginTop: 25,
-        paddingHorizontal: 35,
-        overflow : 'visible'
+        overflow : 'visible',
+        paddingRight: 40,
     }, bigTitle : {
         fontSize: 30,
         fontWeight: '500',
         color: white,
-        textAlign: 'center'
+        textAlign: 'center',
+        overflow : 'visible',
+        paddingTop : 20,
+        paddingBottom : 20
     }
 });
