@@ -31,6 +31,7 @@ basic features
     + color change depeding on label
 + pop-up
     + made pop-up with tips using a API (https://api.kanye.rest)
++ color change    
 
 technologies
 + react native
