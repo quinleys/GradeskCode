@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, ListView , ScrollView, TouchableOpacity, Picker, PickerItem, ActivityIndicator} from 'react-native'
 import DatePicker from 'react-native-datepicker'
-
-import { Header, Container, Content, Item, Input, Button, List, ListItem} from 'native-base'
+// import { Input } from '../components/Input'
+import { ButtonAgenda } from '../components/ButtonAgenda'
+import { Header, Container, Content, Item,   List, ListItem , Button , Input} from 'native-base'
 import * as firebase from 'firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
 import TabIcon from '../components/TabIcon'
 
-
+import { white, mainBackground } from '../utils/styles/Colors'
 import ActionSheet from 'react-native-actionsheet'
 
 var data = []
@@ -29,7 +30,7 @@ export class AgendaScreen extends Component {
         this.labelColor = ["#36B37E","#6554C0","#f06292","#FFAB00", '#00aeef']
 
         this.state = {
-            listViewData: data,
+            listViewData: data, 
             listViewDate: date,
             listViewLabel : label,
             listViewColor : color,
@@ -94,11 +95,15 @@ export class AgendaScreen extends Component {
             <View style={styles.container}>
                 <Text style={styles.title}>Agenda</Text>
             <View style={styles.inputfield}>
+            
             <Input
             placeholder='Add name'
             autoCorrect= {false}
             onChangeText = {(newContact) => this.setState({newContact})}
+            style = {{ color : white}}
+
             />
+            
             <View style={{padding : 10}}>
             <DatePicker
             format="DD-MM-YYYY"
@@ -110,8 +115,16 @@ export class AgendaScreen extends Component {
                 dateIcon: {
                 display : 'none',
                 
+                },
+                dateInput: {
+                    color : white
+                  },
+                dateText : {
+                    color : white
                 }
-            }} 
+                   
+                }
+            } 
             />
             </View>
             <Button onPress={()=> this.addRow(this.state.newContact,this.state.newDate, this.state.newLabel, this.state.newColor)}
@@ -126,7 +139,7 @@ export class AgendaScreen extends Component {
             </View>
 
             <View style={styles.labelContainer}>
-            <Text>Choose your label: </Text>
+            <Text style ={{ color : white }}> Choose your label: </Text>
                 <Button style={{backgroundColor : this.state.color, padding : 10}} onPress={this.showActionSheet}>
                     <Text style={{ color : '#eee' }} >{this.state.newLabel}</Text>
                 </Button>
@@ -190,10 +203,10 @@ export default AgendaScreen;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor : '#F8F8F8',
+        backgroundColor : mainBackground,
         padding: 20,
         paddingTop: 50,
-        paddingBottom: 0
+        paddingBottom: 0,
 
     }, text: {
         color: '#eee',
@@ -202,6 +215,7 @@ const styles = StyleSheet.create({
         textAlign: 'left',
 
     }, button: {
+        width : '20%',
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end'
@@ -225,7 +239,7 @@ const styles = StyleSheet.create({
 
 
     }, button : {
-        backgroundColor : '#F8F8F8',
+        backgroundColor : mainBackground,
         alignItems: 'center',
         justifyContent: 'center',
         margin : 10,
@@ -241,12 +255,13 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5, 
-        paddingBottom:20
+        paddingBottom:20,
+        color : white
         
 
     }, inputfield : {
         flexDirection: 'row',
-        color: '#eee',
+        color: white,
         height : 'auto',
     },
     picker:{
@@ -263,7 +278,8 @@ const styles = StyleSheet.create({
         backgroundColor : '#172B4D'
     }, labelContainer : {
         flexDirection : 'row',
-        padding : 10
+        padding : 10,
+        width : '100%'
     }, textSmall : {
         color: '#eee',
         fontWeight : '100',

@@ -14,6 +14,7 @@ import { Button } from '../components/Button'
 
 import { withNavigation } from 'react-navigation';
 import { Input } from '../components/Input'
+import { mainBackground , white } from '../utils/styles/Colors'
 
 class SettingsScreen extends Component {
 
@@ -82,9 +83,10 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         padding: 20,
         paddingTop: 50,
-        paddingBottom: 0
+        paddingBottom: 0,
+        backgroundColor : mainBackground
     },text: {
-        
+        color : white,
         fontSize: 25,
         fontWeight: '200',
     },title : {
@@ -99,7 +101,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5, 
-        paddingBottom:20
+        paddingBottom:20,
+        color : white,
         
 
     },little: {
@@ -108,6 +111,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         fontWeight: '200',
+        color : white,
     }
     
 });

@@ -12,7 +12,7 @@ import {
 import * as firebase from 'firebase'
 
 import { Button } from '../components/Button'
-
+import { mainBackground , white } from '../utils/styles/Colors'
 import { withNavigation } from 'react-navigation';
 import { Input } from '../components/Input'
 
@@ -167,9 +167,10 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 20,
         paddingTop: 50,
-        paddingBottom: 0
+        paddingBottom: 0,
+        backgroundColor : mainBackground
     },text: {
-        
+        color : white,
         fontSize: 25,
         fontWeight: '200',
     },title : {
@@ -184,7 +185,8 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
         elevation: 5, 
-        paddingBottom:20
+        paddingBottom:20,
+        color : white
         
 
     },little: {
@@ -193,9 +195,11 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 20,
         fontWeight: '100',
+        color : white
     },dialog : {
         height : 300,
         width : 0.6,
+        color : white
     }
     
 });

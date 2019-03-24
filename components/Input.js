@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
-import {white , grey} from '../utils/styles/Colors'
+import {white , grey , purple , notActiveTab } from '../utils/styles/Colors'
 
 const Input = ({ label, value, onChangeText, placeholder, secureTextEntry}) => {
     return (
@@ -10,6 +10,7 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry}) => {
                 autoCorrect={false}
                 onChangeText={onChangeText}
                 placeholder={placeholder}
+                placeholderTextColor = {purple}
                 style={styles.input}
                 secureTextEntry={secureTextEntry}
                 value={value}
@@ -30,8 +31,7 @@ const styles = StyleSheet.create({
     },
     label: {
         padding: 5,
-        paddingBottom: 0,
-        color : grey,
+        color : white ,
         fontSize: 17,
         fontWeight: '700',
         width: '100%',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         paddingRight: 5,
         paddingLeft: 5,
         paddingBottom: 2,
-        color : grey,
+        color : white ,
         fontSize: 18,
         width: '100%',
 

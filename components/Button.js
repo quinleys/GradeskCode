@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { lightBlue } from '../utils/styles/Colors'
+import { purple } from '../utils/styles/Colors'
 
 const Button = ({onPress, children,}) => {
     return (
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         marginTop: 20,
         padding: 20,
         width: '100%',
-        backgroundColor: lightBlue,
+        backgroundColor: purple,
         borderRadius: 4,
         alignItems: 'center',
     },

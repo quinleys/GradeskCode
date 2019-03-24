@@ -11,7 +11,7 @@ import {
 import SvgUri from 'react-native-svg-uri';
 import { SignIn } from './SignInScreen'
 import * as firebase from 'firebase'
-import { yellow, blue, red , green , orange, purple ,blueLight, white } from '../utils/styles/Colors'
+import { yellow, blue, red , green , orange, purple ,blueLight, white, mainBackground } from '../utils/styles/Colors'
 import Popup from '../components/Popup'
 
 colors = []
@@ -127,7 +127,7 @@ class HomeScreen extends Component {
                             <View style={[styles.card, { backgroundColor: this.state.colorStress}]}>  
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
                                 <Text style={styles.cardTitle}>Stresslevel</Text>
-                                <Text style={styles.cardSubTitle}>{this.state.stresslevel}</Text>
+                                <Text style={styles.cardSubTitle}>{this.state.stresslevel}%</Text>
                                 <View style={{justifyContent: 'center',
                                     alignItems: 'center',
                                     width : 'auto',
@@ -165,7 +165,8 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         padding: 20,
         paddingTop: 50,
-        paddingBottom: 0
+        paddingBottom: 0,
+        backgroundColor : mainBackground
 
     },
     body : {
@@ -222,6 +223,7 @@ const styles = StyleSheet.create({
     },
     name : {
         fontSize: 50,
+        color : white,
         fontWeight: '700',
         shadowColor: "#000",
         shadowColor: "#000",

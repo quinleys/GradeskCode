@@ -1,3 +1,13 @@
+
+
+// Main Colors
+export const mainBackground = '#32323C'
+export const mainBar = '#383841'
+export const notActiveTab = '#5A5A5E'
+export const activeTab = '#BC67B3'
+
+
+// Extra Color
 export const lightBlue = "#00aeef"
 export const white = "#eee"
 export const grey = "#333333"

@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar, headerStyle
 } from "react-native";
 
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -22,6 +23,10 @@ import AgendaScreen from './screens/AgendaScreen'
 import StatsScreen from './screens/StatsScreen'
 import EditScreen from './screens/EditScreen'
 
+import { purple , mainBar , notActiveTab } from './utils/styles/Colors'
+
+StatusBar.setBarStyle('light-content', true)
+
 const AuthStackNavigator = createStackNavigator({
   Welcome: {
     // hide menu op start scherm
@@ -33,7 +38,9 @@ const AuthStackNavigator = createStackNavigator({
 
   SignIn: SignInScreen,
   SignUp: SignUpScreen,
-})
+
+
+  })
 
 
 const AppTabNavigator = createBottomTabNavigator({
@@ -116,9 +123,14 @@ const AppTabNavigator = createBottomTabNavigator({
 },
   {
     tabBarOptions: {
-        activeTintColor: '#00aeef',
-        inactiveTintColor: '#000000',
-        showLabel: false 
+        
+        activeTintColor: purple,
+        inactiveTintColor: notActiveTab ,
+        showLabel: false,
+         style : {
+
+          backgroundColor : mainBar
+         } 
         
     },
 

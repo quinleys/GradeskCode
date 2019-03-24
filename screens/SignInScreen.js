@@ -9,6 +9,7 @@ import { LinearTextGradient } from 'react-native-text-gradient';
 
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
+import { mainBackground, white } from '../utils/styles/Colors'
 
 import * as firebase from 'firebase'
 
@@ -83,9 +84,10 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor : mainBackground,
         padding: 20,
     }, text: {
-        color: 'black',
+        color: white, 
         fontWeight : '700',
         fontSize: 70,
         textAlign: 'center',
