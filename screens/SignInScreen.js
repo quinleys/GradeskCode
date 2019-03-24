@@ -43,24 +43,7 @@ class SignInScreen extends Component {
     render() {
         return (
             <View style={styles.container}>
-            <Input
-	            autoCapitalize='none'
-	            autoCorrect={false}
-	            placeholder= 'Enter your email...'
-	            label='Email'
-	            onChangeText={email => this.setState({ email})}
-	            value = {this.state.email}
-	            />
-	            <Input 
-	            autoCapitalize='none'
-	            autoCorrect={false}
-	            placeholder= 'Enter your password...'
-	            label='Password'
-	            secureTextEntry
-	            onChangeText={password => this.setState({ password })}
-	            value = {this.state.password}
-	            />
-                <LinearTextGradient
+                {/* <LinearTextGradient
                     style={{ fontWeight: 'bold', fontSize: 72 }}
                     locations={[0, 1]}
                     colors={['#bc64ba', '#7061e3']}
@@ -68,8 +51,8 @@ class SignInScreen extends Component {
                     end={{ x: 1, y: 0 }}
                 >
                     Gradesk
-                </LinearTextGradient>
-                
+                </LinearTextGradient> */}
+                <Text style={styles.text}>Gradesk</Text>
                 <Input
                 autoCapitalize='none'
                 autoCorrect={false}
@@ -87,7 +70,7 @@ class SignInScreen extends Component {
                 onChangeText={password => this.setState({ password })}
                 value = {this.state.password}
                 />
-                <Text style={styles.text}>Gradesk</Text>
+                
                 <Button title="Complete Sign In" onPress={() => this.lognInUser(this.state.email, this.state.password)}>Log In</Button>
             </View>
         );
