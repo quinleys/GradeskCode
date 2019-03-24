@@ -56,7 +56,7 @@ class EditScreen extends Component {
                 Alert.alert('Password was changed!')
                 console.log('password Changed')
             }).catch((error) => {
-                Alert.alert('error.message')
+                Alert.alert('Please enter your password.')
             })
         }
         onChangeEmailPress = () => {
@@ -65,7 +65,7 @@ class EditScreen extends Component {
                 Alert.alert('Email was changed!')
                 console.log('Email Changed')
             }).catch((error) => {
-                Alert.alert('error.message')
+                Alert.alert('Please enter your email.')
             })
         }
         
@@ -126,9 +126,9 @@ class EditScreen extends Component {
             <Text style={styles.title}>Edit</Text>
             <ScrollView>
             <View>
-                <Text  style={styles.text}>name: {this.state.name}</Text>
+                <Text  style={styles.text}>Name: {this.state.name}</Text>
                 
-                <Text  style={styles.text}>email: {this.state.email}</Text>
+                <Text  style={styles.text}>Email: {this.state.email}</Text>
                 
                 <Input 
             autoCapitalize='none'
@@ -145,8 +145,8 @@ class EditScreen extends Component {
             onChangeText={(text) => this.setState({ newPassword: text })}
             value = {this.state.newPassword}
             />
-                <Button title='New Email' onPress={this.onChangeEmailPress}>change email</Button>
-                <Button title='New Password' onPress={this.onChangePasswordPress}>change password</Button>
+                <Button title='New Email' onPress={this.onChangeEmailPress}>Change email</Button>
+                <Button title='New Password' onPress={this.onChangePasswordPress}>Change password</Button>
 
                 <Button title='Show Dialog' onPress={this.alertAlert}> Delete Account </Button>
                 </View>

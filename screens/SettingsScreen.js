@@ -63,12 +63,12 @@ class SettingsScreen extends Component {
             <View style={styles.container}>
             <Text style={styles.title}>Settings</Text>
             <View>
-                <Text  style={styles.text}>name: {this.state.name}</Text>
-                <Text  style={styles.text}>email: {this.state.email}</Text>
+                <Text  style={styles.text}>Name: {this.state.name}</Text>
+                <Text  style={styles.text}>Email: {this.state.email}</Text>
                 
                 <Button title='Edit' onPress={this.goToEdit}>edit</Button>
                 </View>
-                <Text style={styles.little}>Are you not {this.state.name}? please log out</Text>
+                <Text style={styles.little}>Are you not {this.state.name}? Please log out</Text>
                 <Button onPress= {this.signOutUser} >Sign Out</Button>
             </View>
         );

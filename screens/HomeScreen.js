@@ -14,7 +14,6 @@ import * as firebase from 'firebase'
 import { yellow, blue, red , green , orange, purple ,blueLight, white } from '../utils/styles/Colors'
 import Popup from '../components/Popup'
 
-
 colors = []
 snapshot = []
 class HomeScreen extends Component {
@@ -37,7 +36,7 @@ class HomeScreen extends Component {
         email : user.email,
         photoUrl : user.photoURL,
         emailVerified : user.emailVerified,
-        uid : user.uid , 
+        uid : user.uid, 
 
         // Deadline
         deadlineDay : date, 
@@ -55,14 +54,10 @@ class HomeScreen extends Component {
         colorScore : '#00aeef',
         colorStress : '#00aeef',
         newColors : '',
-        newDeadline : ''
-
-
-        
+        newDeadline : '',
         }
     }
     componentDidMount(){
-
        this.colorScore(this.state.score)
        this.colorStress(this.state.stresslevel)
 
@@ -86,7 +81,6 @@ class HomeScreen extends Component {
             this.setState({ colorScore : red})
           }
     }
-
     colorStress = (stresslevel) => {
         if( stresslevel > 70) { 
             this.setState({ colorStress : red}) 
@@ -100,46 +94,36 @@ class HomeScreen extends Component {
           }
     }
 
-    
-   
-
     render() {
-        
-
         return (
-
             <View style={styles.container}>
                 <View style={styles.title}>  
-                    <Text style={styles.hello}>hello, </Text>
+                    <Text style={styles.hello}>Hello, </Text>
                     <Text style={styles.name}>{this.state.name} </Text>
                 </View> 
                 <ScrollView>
-                <View style={styles.body}>
-
-                    <View style={styles.row}>
-                        <View style={[styles.card , { backgroundColor: this.state.newColors }]}> 
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Agenda')}>
-                            <Text style={styles.cardTitle}>Agenda</Text>
-                            <SvgUri
-                                width="100"
-                                height="100"
-
-                                source={require('../assets/deadline.svg')}
-                            />
-                            <Text style={styles.cardSubTitle}>{this.state.newTitle}</Text>
-                            <Text style={styles.cardSubTitle}>{this.state.newDeadline}</Text>
-                            </TouchableOpacity>
-                        </View>   
-                        <View style={[styles.card , { backgroundColor: this.state.colorScore }]}> 
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
-                            <Text style={styles.cardTitle}>Last Score</Text>
-                              <Text style={styles.cardSubTitle}>{this.state.score}/20</Text>
-                              </TouchableOpacity>
-                        </View> 
-                    </View>
-
+                    <View style={styles.body}>
                         <View style={styles.row}>
-                        
+                            <View style={[styles.card , { backgroundColor: this.state.newColors }]}> 
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Agenda')}>
+                                <Text style={styles.cardTitle}>Agenda</Text>
+                                <SvgUri
+                                    width="100"
+                                    height="100"
+                                    source={require('../assets/deadline.svg')}
+                                />
+                                <Text style={styles.cardSubTitle}>{this.state.newTitle}</Text>
+                                <Text style={styles.cardSubTitle}>{this.state.newDeadline}</Text>
+                                </TouchableOpacity>
+                            </View>   
+                            <View style={[styles.card , { backgroundColor: this.state.colorScore }]}> 
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
+                                <Text style={styles.cardTitle}>Last Score</Text>
+                                <Text style={styles.cardSubTitle}>{this.state.score}/20</Text>
+                                </TouchableOpacity>
+                            </View> 
+                        </View>
+                        <View style={styles.row}>
                             <View style={[styles.card, { backgroundColor: this.state.colorStress}]}>  
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
                                 <Text style={styles.cardTitle}>Stresslevel</Text>
@@ -157,23 +141,19 @@ class HomeScreen extends Component {
                                 </View>
                                 </TouchableOpacity>
                             </View> 
-                            
-                            </View>
-
-                            <View style={styles.row}>
-                                <View style={[styles.card , { backgroundColor: purple }]}> 
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
-                                    <Text style={styles.cardTitle}>Hours Studied</Text>
-                                    <Text style={styles.cardSubTitle}>{this.state.hoursStudied}</Text>
-                                    </TouchableOpacity>
-                                </View> 
-                            </View>
-                            <Popup></Popup>
-                        
-                </View>
+                        </View>
+                        <View style={styles.row}>
+                            <View style={[styles.card , { backgroundColor: purple }]}> 
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
+                                <Text style={styles.cardTitle}>Hours Studied</Text>
+                                <Text style={styles.cardSubTitle}>{this.state.hoursStudied}</Text>
+                                </TouchableOpacity>
+                            </View> 
+                        </View>
+                        <Popup></Popup>
+                    </View>
                 </ScrollView>
             </View> 
-
         );
     }
 }

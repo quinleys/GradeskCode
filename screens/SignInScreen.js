@@ -5,6 +5,8 @@ import {
     StyleSheet,
     Alert
 } from "react-native";
+import { LinearTextGradient } from 'react-native-text-gradient';
+
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
 
@@ -21,7 +23,6 @@ class SignInScreen extends Component {
             userCredentials: '',
             email: '',
             password: '',
-            
         })
     }
 
@@ -37,31 +38,39 @@ class SignInScreen extends Component {
             Alert.alert('Account does not exist')
             console.log('catch error')
         }
-   
     }
 
     render() {
         return (
             <View style={styles.container}>
-            <Text style={styles.text}> Gradesk </Text>
-            
-            <Input
-            autoCapitalize='none'
-            autoCorrect={false}
-            placeholder= 'Enter your email...'
-            label='Email'
-            onChangeText={email => this.setState({ email})}
-            value = {this.state.email}
-            />
-            <Input 
-            autoCapitalize='none'
-            autoCorrect={false}
-            placeholder= 'Enter your password...'
-            label='Password'
-            secureTextEntry
-            onChangeText={password => this.setState({ password })}
-            value = {this.state.password}
-            />
+                {/* <LinearTextGradient
+                    style={{ fontWeight: 'bold', fontSize: 72 }}
+                    locations={[0, 1]}
+                    colors={['#bc64ba', '#7061e3']}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 0 }}
+                >
+                    Gradesk
+                </LinearTextGradient>
+                
+                <Input
+                autoCapitalize='none'
+                autoCorrect={false}
+                placeholder= 'Enter your email...'
+                label='Email'
+                onChangeText={email => this.setState({ email})}
+                value = {this.state.email}
+                />
+                <Input 
+                autoCapitalize='none'
+                autoCorrect={false}
+                placeholder= 'Enter your password...'
+                label='Password'
+                secureTextEntry
+                onChangeText={password => this.setState({ password })}
+                value = {this.state.password}
+                /> */}
+                <Text style={styles.text}>Gradesk</Text>
                 <Button title="Complete Sign In" onPress={() => this.lognInUser(this.state.email, this.state.password)}>Log In</Button>
             </View>
         );
@@ -80,7 +89,5 @@ const styles = StyleSheet.create({
         fontWeight : '700',
         fontSize: 70,
         textAlign: 'center',
-
-
     }
 });
