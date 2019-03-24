@@ -18,6 +18,7 @@
     "react-native-bottom-action-sheet": "0.0.20",
     "react-native-calendar-select": "^0.1.2",
     "react-native-category": "^1.0.4",
+    "react-native-chart-kit": "^2.4.0",
     "react-native-datepicker": "^1.7.2",
     "react-native-elements": "^1.1.0",
     "react-native-modal": "^9.0.0",
