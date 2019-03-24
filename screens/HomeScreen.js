@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
     hello : {
         color: '#828D9A',
         fontSize: 20,
-        fontWeight: '200',
+        fontWeight: '300',
         
     },
     name : {
