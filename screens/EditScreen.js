@@ -68,11 +68,13 @@ class EditScreen extends Component {
                 Alert.alert('error.message')
             })
         }
+        
         editDone = () => {
             this.onChangeEmailPress()
             this.onChangePasswordPress()
 
         }
+        /*
         goToSettings = () => {
             try {
             this.props.navigation.navigate('Settings')
@@ -81,7 +83,7 @@ class EditScreen extends Component {
                 console.log(e);
             }
         }
-        
+        */
         deleteAccount = () => {
 
             goToWelcome = () => {
@@ -127,6 +129,7 @@ class EditScreen extends Component {
                 <Text  style={styles.text}>name: {this.state.name}</Text>
                 
                 <Text  style={styles.text}>email: {this.state.email}</Text>
+                
                 <Input 
             autoCapitalize='none'
             autoCorrect={false}
@@ -142,10 +145,10 @@ class EditScreen extends Component {
             onChangeText={(text) => this.setState({ newPassword: text })}
             value = {this.state.newPassword}
             />
-                <Button title='New Password' onPress={this.onChangePasswordPress}>change password</Button>
                 <Button title='New Email' onPress={this.onChangeEmailPress}>change email</Button>
+                <Button title='New Password' onPress={this.onChangePasswordPress}>change password</Button>
+
                 <Button title='Show Dialog' onPress={this.alertAlert}> Delete Account </Button>
-                        <Button title='Done' onPress={this.goToSettings}>Done</Button>
                 </View>
                 <View style={styles.dialog}>
                 

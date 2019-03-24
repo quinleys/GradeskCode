@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, ListView , ScrollView, TouchableOpacity, Picker, PickerItem} from 'react-native'
+import { Text, View, StyleSheet, ListView , ScrollView, TouchableOpacity, Picker, PickerItem, ActivityIndicator} from 'react-native'
 import DatePicker from 'react-native-datepicker'
 
 import { Header, Container, Content, Item, Input, Button, List, ListItem} from 'native-base'
@@ -7,7 +7,6 @@ import * as firebase from 'firebase'
 import Icon from 'react-native-vector-icons/Ionicons'
 import TabIcon from '../components/TabIcon'
 
-import ReactNativePickerModule from 'react-native-picker-module'
 
 import ActionSheet from 'react-native-actionsheet'
 
@@ -27,7 +26,7 @@ export class AgendaScreen extends Component {
 
         
         this.labelData = ["Work","School","Sport","Personal", 'None']
-        this.labelColor = ["#36B37E","#6554C0","#172B4D","#FFAB00", '#00aeef']
+        this.labelColor = ["#36B37E","#6554C0","#f06292","#FFAB00", '#00aeef']
 
         this.state = {
             listViewData: data,
@@ -35,7 +34,7 @@ export class AgendaScreen extends Component {
             listViewLabel : label,
             listViewColor : color,
             newContact: '',
-            newDate: new Date(). getDate(),
+            newDate: '',
             newLabel: 'Label',
             selectedValue: null,
             colorLabel:'',
@@ -88,6 +87,7 @@ export class AgendaScreen extends Component {
     }
 
   render() {
+  
 
     return (
         
@@ -99,6 +99,7 @@ export class AgendaScreen extends Component {
             autoCorrect= {false}
             onChangeText = {(newContact) => this.setState({newContact})}
             />
+            <View style={{padding : 10}}>
             <DatePicker
             format="DD-MM-YYYY"
             date={this.state.newDate}
@@ -108,28 +109,30 @@ export class AgendaScreen extends Component {
             customStyles={{
                 dateIcon: {
                 display : 'none',
+                
                 }
             }} 
             />
-
+            </View>
             <Button onPress={()=> this.addRow(this.state.newContact,this.state.newDate, this.state.newLabel, this.state.newColor)}
             style={styles.button}
             >
                 <TabIcon 
                 iconDefault='ios-add-circle'
                 tintColor='#00aeef'
+                size = {30}
                 />   
             </Button>
-
             </View>
 
             <View style={styles.labelContainer}>
-                <Button style={{backgroundColor : this.state.color}} onPress={this.showActionSheet}>
-                    <Text >{this.state.newLabel}</Text>
+            <Text>Choose your label: </Text>
+                <Button style={{backgroundColor : this.state.color, padding : 10}} onPress={this.showActionSheet}>
+                    <Text style={{ color : '#eee' }} >{this.state.newLabel}</Text>
                 </Button>
             <ActionSheet
                 ref={o => this.ActionSheet = o}
-                title={'Which one do you like ?'}
+                title={'Choose your label :'}
                 options={['Work', 'School', 'Sport', 'Personal', 'None', 'cancel']}
                 selectedValue={this.state.newLabel}
                 cancelButtonIndex={5}
@@ -139,7 +142,6 @@ export class AgendaScreen extends Component {
             
             </View>
 
-            
             <ScrollView>
             <List
             enableEmptySections
@@ -158,10 +160,13 @@ export class AgendaScreen extends Component {
                 shadowRadius: 3.84,
                 elevation: 5,  
                 height: 'auto',
-                borderRadius: 4, }} >
+                borderRadius: 4,
+                padding: 10,
+                }} >
                 <Text style={styles.text}>{data.val().name}</Text>
+                <Text style={styles.textSmall}>{data.val().label}</Text>
                 <Text style={styles.text}>{data.val().date}</Text>
-                <Text style={styles.text}>{data.val().label}</Text>
+                
             </View>
             }
 
@@ -173,7 +178,8 @@ export class AgendaScreen extends Component {
                 rightOpenValue={-90}
             />
             </ScrollView>
-            </View>
+            
+        </View>
             
     )
   }
@@ -197,6 +203,7 @@ const styles = StyleSheet.create({
 
     }, button: {
         flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'flex-end'
 
     },card: {
@@ -240,7 +247,7 @@ const styles = StyleSheet.create({
     }, inputfield : {
         flexDirection: 'row',
         color: '#eee',
-        height : 'auto'
+        height : 'auto',
     },
     picker:{
         flex: 1,
@@ -256,5 +263,11 @@ const styles = StyleSheet.create({
         backgroundColor : '#172B4D'
     }, labelContainer : {
         flexDirection : 'row',
+        padding : 10
+    }, textSmall : {
+        color: '#eee',
+        fontWeight : '100',
+        fontSize: 20,
+        textAlign: 'left',
     }
 });

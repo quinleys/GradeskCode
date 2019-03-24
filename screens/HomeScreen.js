@@ -11,9 +11,12 @@ import {
 import SvgUri from 'react-native-svg-uri';
 import { SignIn } from './SignInScreen'
 import * as firebase from 'firebase'
-
+import { yellow, blue, red , green , orange, purple ,blueLight, white } from '../utils/styles/Colors'
 import Popup from '../components/Popup'
 
+
+colors = []
+snapshot = []
 class HomeScreen extends Component {
 
     constructor(props) {
@@ -26,7 +29,7 @@ class HomeScreen extends Component {
         var randomHoursStudied=  Math.floor(Math.random() * 50) + 1 ;
         var user = firebase.auth().currentUser;
 
-        var name, email, photoUrl, uid, emailVerified;
+        var name, email, photoUrl, uid, emailVerified ;
         
         this.state = {
 
@@ -47,11 +50,62 @@ class HomeScreen extends Component {
         score : randomScore,
 
         // Score  
-        hoursStudied : randomHoursStudied
+        hoursStudied : randomHoursStudied,
+
+        colorScore : '#00aeef',
+        colorStress : '#00aeef',
+        newColors : '',
+        newDeadline : ''
+
+
+        
         }
     }
+    componentDidMount(){
+
+       this.colorScore(this.state.score)
+       this.colorStress(this.state.stresslevel)
+
+       firebase.database().ref('/agenda').limitToFirst(1).once('child_added', (snapshot) =>{
+        this.setState({
+                newColors : snapshot.val().color,
+                newDeadline : snapshot.val().date,
+                newTitle : snapshot.val().name
+                
+      }, console.log(snapshot.val().color))
+    })
+    }
+
+    colorScore = (score) => {
+        if( score > 12) { 
+            this.setState({ colorScore : green}) 
+        }else if(score >10 ){
+            this.setState({ colorScore : yellow})
+          } 
+          else { 
+            this.setState({ colorScore : red})
+          }
+    }
+
+    colorStress = (stresslevel) => {
+        if( stresslevel > 70) { 
+            this.setState({ colorStress : red}) 
+          } else if (stresslevel >= 60 ){
+            this.setState({ colorStress : orange}) 
+          }
+          else if (stresslevel >= 50  ) {
+            this.setState({ colorStress : yellow}) 
+          } else { 
+            this.setState({ colorStress : green})
+          }
+    }
+
+    
+   
 
     render() {
+        
+
         return (
 
             <View style={styles.container}>
@@ -63,19 +117,20 @@ class HomeScreen extends Component {
                 <View style={styles.body}>
 
                     <View style={styles.row}>
-                        <View style={styles.card}> 
+                        <View style={[styles.card , { backgroundColor: this.state.newColors }]}> 
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Agenda')}>
-                            <Text style={styles.cardTitle}>Deadline</Text>
+                            <Text style={styles.cardTitle}>Agenda</Text>
                             <SvgUri
                                 width="100"
                                 height="100"
 
                                 source={require('../assets/deadline.svg')}
                             />
-                            <Text style={styles.cardSubTitle}>{this.state.deadlineDay}/{this.state.deadlineMonth}</Text>
+                            <Text style={styles.cardSubTitle}>{this.state.newTitle}</Text>
+                            <Text style={styles.cardSubTitle}>{this.state.newDeadline}</Text>
                             </TouchableOpacity>
                         </View>   
-                        <View style={styles.card}> 
+                        <View style={[styles.card , { backgroundColor: this.state.colorScore }]}> 
                         <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
                             <Text style={styles.cardTitle}>Last Score</Text>
                               <Text style={styles.cardSubTitle}>{this.state.score}/20</Text>
@@ -85,23 +140,27 @@ class HomeScreen extends Component {
 
                         <View style={styles.row}>
                         
-                            <View style={styles.card}>  
+                            <View style={[styles.card, { backgroundColor: this.state.colorStress}]}>  
                             <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
                                 <Text style={styles.cardTitle}>Stresslevel</Text>
                                 <Text style={styles.cardSubTitle}>{this.state.stresslevel}</Text>
+                                <View style={{justifyContent: 'center',
+                                    alignItems: 'center',
+                                    width : 'auto'}}>
                                 <Image
-                                    style={{width: 50, height: 50, justifyContent: 'center',
-                                    alignItems: 'center'}}
+                                    style={{width: 50, height: 50, 
+                                    }}
 
                                     source={require('../assets/heart-png-44643.png')}
                                 />
+                                </View>
                                 </TouchableOpacity>
                             </View> 
                             
                             </View>
 
                             <View style={styles.row}>
-                                <View style={styles.card}> 
+                                <View style={[styles.card , { backgroundColor: purple }]}> 
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Statistics')}>
                                     <Text style={styles.cardTitle}>Hours Studied</Text>
                                     <Text style={styles.cardSubTitle}>{this.state.hoursStudied}</Text>
@@ -134,7 +193,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
 
     },
-    card: {
+    card : {
         flex: 1,
         margin : 10,
         alignItems: 'center',
@@ -151,6 +210,7 @@ const styles = StyleSheet.create({
         elevation: 5,  
         height: 200,
         borderRadius: 4,
+        color : white
         
 
     },
@@ -159,16 +219,19 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         alignItems: 'center',
         justifyContent: 'center',
+        color : white
     },
     cardSubTitle: {
         fontSize: 25,
         fontWeight: '300',
-        textAlign: 'center'
+        textAlign: 'center',
+        color : white
     },
     cardText: {
         fontSize: 20,
         fontWeight: '300',
-        textAlign: 'center'
+        textAlign: 'center',
+        color : white
     },
     hello : {
         color: '#828D9A',
@@ -196,6 +259,7 @@ const styles = StyleSheet.create({
     }, img :{
 
         alignContent: 'center'
-    }
+    },
+   
     
 });

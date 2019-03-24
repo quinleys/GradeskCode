@@ -8,4 +8,6 @@ export const green = '#36B37E'
 export const purple = '#6554C0'
 export const red = '#FF5630'
 export const yellow = '#FFAB00'
+export const pink = '#f06292'
+export const orange = '#FF8800'
 export const primaryGradientArray = [purple, blueLight]

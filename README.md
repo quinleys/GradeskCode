@@ -11,6 +11,9 @@ basic features
 + firebase auth
 + navigation
 + get username 
++ homepage
+    + Agenda tab gets data from database
+        + Shows color , date , title
 + log out
 + startpage with data and clickable 
 + Setting Page 
