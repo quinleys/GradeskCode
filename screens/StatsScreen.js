@@ -9,6 +9,16 @@ import {
 import PercentageCircle from 'react-native-percentage-circle';
 import HomeScreen, {stresslevel} from '../screens/HomeScreen';
 
+import {Dimensions} from 'react-native';
+
+import {
+    LineChart,
+    BarChart,
+    PieChart,
+    ProgressChart,
+    ContributionGraph
+  } from 'react-native-chart-kit'
+
 class StatsScreen extends Component {
 
     constructor(props) {
@@ -37,32 +47,55 @@ class StatsScreen extends Component {
                 <Text style={styles.title}>Statistics</Text>
                 <ScrollView>
                     <View style={styles.body}>
-                        <View style={styles.containerCircle}>
-                            <View style={styles.baseCircle}>
-                                <View style={styles.circle}>
-                                    <Text style={styles.textCircle}>D</Text>
-                                </View>
-                                <View style={styles.circle}>
-                                    <Text style={styles.textCircle}>M</Text>
-                                </View>
-                                <View style={styles.circle}>
-                                    <Text style={styles.textCircle}>Y</Text>
-                                </View>
-                            </View>
-                        </View>
-                        <View>
-                            <View style={styles.percentCircle}>
+                        <ScrollView horizontal={true}>
+                            <View>
                                 <PercentageCircle 
                                     radius={100} 
                                     percent={this.state.stresslevel} 
                                     color={"#7061e3"} 
                                     innerColor={"#2c2c37"} 
                                     borderWidth={18}
-                                    textStyle={{fontSize: 24}}>
+                                    textStyle={{fontSize: 24}}
+                                    style={styles.pageView}>
                                 </PercentageCircle>
                                 <Text style={styles.textStyle}>Average Stresslevel</Text>
+                                <View>
+                                    <LineChart
+                                        data={{
+                                        labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+                                        datasets: [{
+                                            data: [
+                                            Math.random() * 100,
+                                            Math.random() * 100,
+                                            Math.random() * 100,
+                                            Math.random() * 100,
+                                            Math.random() * 100,
+                                            Math.random() * 100
+                                            ]
+                                        }]
+                                        }}
+                                        width={Dimensions.get('window').width} // from react-native
+                                        height={220}
+                                        yAxisLabel={'$'}
+                                        chartConfig={{
+                                        backgroundColor: '#2c2c37',
+                                        backgroundGradientFrom: '#bc64ba',
+                                        backgroundGradientTo: '#7061e3',
+                                        decimalPlaces: 2, // optional, defaults to 2dp
+                                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                                        style: {
+                                            borderRadius: 16
+                                        }
+                                        }}
+                                        bezier
+                                        style={{
+                                        marginVertical: 8,
+                                        borderRadius: 16
+                                        }}
+                                    />
+                                </View>
                             </View>
-                            <View style={styles.percentCircle}>
+                            <View style={styles.pageView}>
                                 <PercentageCircle 
                                     radius={100} 
                                     percent={this.state.score} 
@@ -70,11 +103,12 @@ class StatsScreen extends Component {
                                     innerColor={"#2c2c37"} 
                                     borderWidth={18}
                                     textStyle={{fontSize: 24}}
-                                    style={styles.percentCircle}>
+                                    style={styles.pageView}
+                                    >
                                 </PercentageCircle>
                                 <Text style={styles.textStyle}>Average Score</Text>
                             </View>
-                            <View style={styles.percentCircle}>
+                            <View style={styles.pageView}>
                                 <PercentageCircle 
                                     radius={100} 
                                     percent={this.state.hoursStudied} 
@@ -82,11 +116,12 @@ class StatsScreen extends Component {
                                     innerColor={"#2c2c37"} 
                                     borderWidth={18}
                                     textStyle={{fontSize: 24}}
-                                    style={styles.percentCircle}>
+                                    style={styles.pageView}
+                                    >
                                 </PercentageCircle>
                                 <Text style={styles.textStyle}>Average Study Time</Text>
                             </View>
-                        </View>
+                        </ScrollView>
                     </View>
                 </ScrollView>
             </View>
@@ -94,6 +129,13 @@ class StatsScreen extends Component {
     }
 }
 export default StatsScreen;
+
+const chartConfig = {
+    backgroundGradientFrom: '#1E2923',
+    backgroundGradientTo: '#08130D',
+    color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+    strokeWidth: 2 // optional, default 3
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -138,7 +180,6 @@ const styles = StyleSheet.create({
     }, textCircle: {
         color: '#FFF',
         fontWeight: 'bold',
-    }, percentCircle: {
     }, textStyle: {
         color: '#FFF',
         fontWeight: 'bold',
@@ -146,7 +187,8 @@ const styles = StyleSheet.create({
         marginTop: 8,
         fontSize: 18,
         marginBottom: 16,
-    }, percentCircle: {
+    }, pageView: {
         marginTop: 25,
-    }
+        marginHorizontal: 35,
+    },
 });
